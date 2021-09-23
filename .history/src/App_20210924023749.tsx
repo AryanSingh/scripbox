@@ -14,7 +14,13 @@ function App() {
     <Router>
         <Switch>
         <Route path="/login">
-          <LoginScreen/>
+          <LoginScreen
+        </Route>
+        <Route path="/users">
+          <Users />
+        </Route>
+        <Route path="/">
+          <Home />
         </Route>
       </Switch>
     </Router>

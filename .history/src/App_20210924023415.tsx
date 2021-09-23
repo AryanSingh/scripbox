@@ -5,16 +5,22 @@ import {
   Route,
   Link
 } from "react-router-dom";
+import logo from './logo.svg';
 import './App.css';
-import LoginScreen from './screens/LoginScreen';
 
 function App() {
-  const [authenticated, setAuthenticated] = useState(false);
+  const [authenticated, setAuthenticated] = useState
   return (
     <Router>
         <Switch>
-        <Route path="/login">
-          <LoginScreen/>
+        <Route path="/about">
+          <About />
+        </Route>
+        <Route path="/users">
+          <Users />
+        </Route>
+        <Route path="/">
+          <Home />
         </Route>
       </Switch>
     </Router>
