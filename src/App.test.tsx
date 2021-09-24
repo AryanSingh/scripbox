@@ -12,9 +12,12 @@ test('login button is rendered and employeeId field is present',  () => {
 
 test('logging in removes login screen', async () => {
   render(<App/>);
-  userEvent.type(screen.getByTestId('employeeId'), 'aryan');
-  userEvent.click(screen.getByText(/login/i));
+  userEvent.type(screen.getByRole('textbox'), 'aryan');
+  expect(screen.getByDisplayValue('aryan')).toBeInTheDocument();
+  expect(screen.queryByTestId('inactiveButton')).not.toBeInTheDocument();
+  expect(screen.getByTestId('activeButton')).toBeInTheDocument();
+  userEvent.click(screen.getByTestId('activeButton'));
   const linkElement = screen.getByText(/home screen/i);
   expect(linkElement).toBeInTheDocument();
-  expect(screen.getByTestId('employeeId')).not.toBeInTheDocument();
+  expect(screen.queryByTestId('employeeId')).not.toBeInTheDocument();
 });
