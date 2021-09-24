@@ -7,17 +7,27 @@ import {
 } from "react-router-dom";
 import './App.css';
 import LoginScreen from './screens/LoginScreen';
+import HomeScreen from "./screens/HomeScreen";
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
+
   return (
-    <Router>
-        <Switch>
-        <Route path="/login">
-          <LoginScreen/>
-        </Route>
-      </Switch>
-    </Router>
+    <div>
+      {
+        !authenticated? <LoginScreen authenticated={authenticated} setAuthenticated={setAuthenticated} />:
+          <Router>
+            <Switch>
+              <Route path="/home">
+                <HomeScreen />
+              </Route>
+              <Route path="/">
+                <HomeScreen />
+              </Route>
+            </Switch>
+          </Router>
+      }
+    </div>
   );
 }
 
