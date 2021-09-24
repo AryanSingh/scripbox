@@ -59,11 +59,11 @@ const LoginScreen = (props:IProps) => {
   return(
     <Grid container className={classes.root}>
       <Grid className={classes.container} item xs={12} sm={6}>
-        <TextField className={classes.input} value={employeeId} onChange={handleChange} label="Employee id" variant="outlined" />
+        <TextField data-testid='employeeId' className={classes.input} value={employeeId} onChange={handleChange} label="Employee id" variant="outlined" />
         {(employeeId && employeeId.length > 0)?
-          <Button className={classes.button} disableElevation onClick={onSubmit} variant="contained" color="primary">Submit</Button>:
+          <Button className={classes.button} disableElevation onClick={onSubmit} variant="contained" color="primary">Login</Button>:
           <Button className={classes.button} disableElevation variant="contained" disabled>
-           Submit
+           Login
           </Button>
         }
       </Grid>
