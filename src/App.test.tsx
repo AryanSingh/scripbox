@@ -17,7 +17,5 @@ test('logging in removes login screen', async () => {
   expect(screen.queryByTestId('inactiveButton')).not.toBeInTheDocument();
   expect(screen.getByTestId('activeButton')).toBeInTheDocument();
   userEvent.click(screen.getByTestId('activeButton'));
-  const linkElement = screen.getByText(/home screen/i);
-  expect(linkElement).toBeInTheDocument();
   expect(screen.queryByTestId('employeeId')).not.toBeInTheDocument();
 });
