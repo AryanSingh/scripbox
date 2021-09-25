@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Grid from "@material-ui/core/Grid";
 import { Typography, Button } from "@material-ui/core";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import Challenge from "../components/Challenge";
-import useGetChallenges from "../services/useGetChallenges";
 import { useHistory } from "react-router-dom";
+import { getChallenges } from "../services/challengeService";
+import { IChallenge } from "../types";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -46,12 +47,25 @@ interface IProps {}
 
 const HomeScreen = (props: IProps) => {
   const classes = useStyles();
-  const challenges = useGetChallenges();
+  const [challenges, setChallenges] = useState<IChallenge[]>([]);
+  useEffect(() => {
+    fetchChallenges();
+  }, []);
+
   const history = useHistory();
+
+  const fetchChallenges = () => {
+    let res = getChallenges();
+    setChallenges(res);
+  };
 
   const renderChallenges = () =>
     challenges.map((challenge) => (
-      <Challenge key={challenge.id} challenge={challenge} />
+      <Challenge
+        key={challenge.id}
+        challenge={challenge}
+        fetchChallenges={fetchChallenges}
+      />
     ));
   return (
     <Grid container className={classes.root}>

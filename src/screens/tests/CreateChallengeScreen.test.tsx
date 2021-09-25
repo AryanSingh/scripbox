@@ -8,11 +8,12 @@ import CreateChallengeScreen from "../CreateChallengeScreen";
 
 test("create challenge screen is rendereed", () => {
   render(<CreateChallengeScreen />);
-  expect(screen.getByText(/Create new challenge/i)).toBeInTheDocument();
+  expect(screen.getByText(/Create challenge/i)).toBeInTheDocument();
   expect(screen.getByPlaceholderText(/Challenge name/i)).toBeInTheDocument();
   expect(
     screen.getByPlaceholderText(/Challenge description/i)
   ).toBeInTheDocument();
+  expect(screen.getByText(/select tags/i)).toBeInTheDocument();
 });
 
 // title: string,

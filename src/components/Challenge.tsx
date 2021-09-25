@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import Grid from "@material-ui/core/Grid";
 import { Typography } from "@material-ui/core";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import ThumbUpIcon from "@material-ui/icons/ThumbUp";
 import ThumbDownIcon from "@material-ui/icons/ThumbDown";
 import { IChallenge } from "../types";
+import { upVote, downVote } from "../services/voteService";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -33,10 +34,12 @@ const useStyles = makeStyles((theme: Theme) =>
 
 interface IProps {
   challenge: IChallenge;
+  fetchChallenges: () => void;
 }
 const Challenge = (props: IProps) => {
   const { challenge } = props;
   const classes = useStyles();
+
   const renderTags = (tags: string[]) =>
     tags.map((tag) => (
       <Grid key={tag} item className={classes.tag}>
@@ -64,15 +67,25 @@ const Challenge = (props: IProps) => {
         <Typography variant="body1">Created at:</Typography>
         <Typography variant="body1">{challenge.createdAt}</Typography>
       </Grid>
-      <Grid direction="row" container justifyContent="center">
+      <Grid direction="row" container justifyContent="center" spacing={1}>
         <Grid item container xs={6} direction="row" justifyContent="flex-end">
-          <ThumbUpIcon />
+          <ThumbUpIcon
+            onClick={() => {
+              upVote(challenge.id);
+              props.fetchChallenges();
+            }}
+          />
           <Typography data-testid={`upvotes${challenge.id}`} variant="body1">
             {challenge.upVotes}
           </Typography>
         </Grid>
         <Grid item container xs={6} direction="row" justifyContent="flex-start">
-          <ThumbDownIcon />
+          <ThumbDownIcon
+            onClick={() => {
+              downVote(challenge.id);
+              props.fetchChallenges();
+            }}
+          />
           <Typography data-testid={`downvotes${challenge.id}`} variant="body1">
             {challenge.downVotes}
           </Typography>

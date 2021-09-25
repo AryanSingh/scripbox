@@ -52,6 +52,7 @@
     "husky": ">=6",
     "lint-staged": ">=10",
     "prettier": "^2.4.1",
+    "react-select": "^5.0.0",
     "react-select-material-ui": "^7.1.0"
   },
   "lint-staged": {
