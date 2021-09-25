@@ -18,7 +18,6 @@ const useStyles = makeStyles((theme: Theme) =>
       position: "absolute",
       top: "50%",
       left: "50%",
-      height: "500px",
       transform: "translate(-50%, -50%)",
       margin: "auto",
     },
@@ -67,9 +66,6 @@ const CreateChallengeScreen = () => {
   // @ts-ignore
   return (
     <Grid className={classes.root} container direction="column">
-      <Grid container direction="row" item justifyContent="center">
-        <Typography variant="h4">Create Challenge</Typography>
-      </Grid>
       <Grid
         container
         item
@@ -79,6 +75,9 @@ const CreateChallengeScreen = () => {
         alignItems="center"
         spacing={3}
       >
+        <Grid container direction="row" item justifyContent="center">
+          <Typography variant="h4">Create Challenge</Typography>
+        </Grid>
         <Grid container direction="row" justifyContent="center" item>
           <TextField
             className={classes.input}

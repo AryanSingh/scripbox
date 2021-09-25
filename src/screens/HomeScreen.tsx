@@ -4,6 +4,8 @@ import { Typography, Button } from "@material-ui/core";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import Challenge from "../components/Challenge";
 import { useHistory } from "react-router-dom";
+import ToggleButton from "@material-ui/lab/ToggleButton";
+import ToggleButtonGroup from "@material-ui/lab/ToggleButtonGroup";
 import { getChallenges } from "../services/challengeService";
 import { IChallenge } from "../types";
 
@@ -40,6 +42,16 @@ const useStyles = makeStyles((theme: Theme) =>
       minWidth: "250px",
       maxWidth: "300px",
     },
+    noChallenge: {
+      position: "absolute",
+      top: "50%",
+      left: "50%",
+      transform: "translate(-50%, -50%)",
+    },
+    button: {
+      textTransform: "none",
+    },
+    filterText: { marginRight: "10px" },
   })
 );
 
@@ -48,6 +60,14 @@ interface IProps {}
 const HomeScreen = (props: IProps) => {
   const classes = useStyles();
   const [challenges, setChallenges] = useState<IChallenge[]>([]);
+  const [alignment, setAlignment] = useState("left");
+
+  const handleChange = (
+    event: React.MouseEvent<HTMLElement>,
+    newAlignment: string
+  ) => {
+    setAlignment(newAlignment);
+  };
   useEffect(() => {
     fetchChallenges();
   }, []);
@@ -59,8 +79,23 @@ const HomeScreen = (props: IProps) => {
     setChallenges(res);
   };
 
+  const renderNoChallenge = () => {
+    return (
+      <Typography variant="h6">No challenges have been created yet.</Typography>
+    );
+  };
+
+  const filterChallenges = (challenges: IChallenge[]) => {
+    console.log("alignment", alignment);
+    if (alignment === "left") {
+      return challenges.sort((a, b) => a.createdAt - b.createdAt);
+    } else {
+      return challenges.sort((a, b) => b.upVotes - a.upVotes);
+    }
+  };
+
   const renderChallenges = () =>
-    challenges.map((challenge) => (
+    filterChallenges(challenges).map((challenge) => (
       <Challenge
         key={challenge.id}
         challenge={challenge}
@@ -77,6 +112,34 @@ const HomeScreen = (props: IProps) => {
         xs={12}
       >
         <Typography variant="h3">All Challenges</Typography>
+      </Grid>
+      <Grid item container xs={12} justifyContent="center" alignItems="center">
+        <Typography className={classes.filterText} variant="h6">
+          Filter by:{" "}
+        </Typography>
+        <ToggleButtonGroup
+          size="small"
+          value={alignment}
+          exclusive
+          onChange={handleChange}
+        >
+          <ToggleButton className={classes.button} value="left">
+            <Typography variant="body1">Creation time</Typography>
+          </ToggleButton>
+
+          <ToggleButton className={classes.button} value="right">
+            <Typography variant="body1">Upvotes</Typography>
+          </ToggleButton>
+        </ToggleButtonGroup>
+      </Grid>
+      <Grid
+        item
+        justifyContent="center"
+        container
+        xs={12}
+        className={classes.noChallenge}
+      >
+        {challenges.length === 0 && renderNoChallenge()}
       </Grid>
       <Grid
         direction="row"

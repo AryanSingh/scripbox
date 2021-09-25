@@ -29,6 +29,9 @@ const useStyles = makeStyles((theme: Theme) =>
     tag: {
       margin: "0 5px",
     },
+    icon: {
+      cursor: "pointer",
+    },
   })
 );
 
@@ -64,12 +67,15 @@ const Challenge = (props: IProps) => {
       <Typography variant="h4">{challenge.title}</Typography>
       <Typography variant="body1">{challenge.description}</Typography>
       <Grid direction="row" container justifyContent="center">
-        <Typography variant="body1">Created at:</Typography>
-        <Typography variant="body1">{challenge.createdAt}</Typography>
+        <Typography variant="body1">Created at: </Typography>
+        <Typography variant="body1">
+          {new Date(challenge.createdAt).toLocaleString()}
+        </Typography>
       </Grid>
       <Grid direction="row" container justifyContent="center" spacing={1}>
         <Grid item container xs={6} direction="row" justifyContent="flex-end">
           <ThumbUpIcon
+            className={classes.icon}
             onClick={() => {
               upVote(challenge.id);
               props.fetchChallenges();
@@ -81,6 +87,7 @@ const Challenge = (props: IProps) => {
         </Grid>
         <Grid item container xs={6} direction="row" justifyContent="flex-start">
           <ThumbDownIcon
+            className={classes.icon}
             onClick={() => {
               downVote(challenge.id);
               props.fetchChallenges();

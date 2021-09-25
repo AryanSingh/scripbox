@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { IChallenge, IStore } from "../types";
 
 export const upVote = (id: string) => {
