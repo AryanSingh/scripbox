@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent } from 'react';
+import React, {useState, ChangeEvent, useEffect} from 'react';
 import Grid from '@material-ui/core/Grid';
 import { TextField, Button } from '@material-ui/core';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
@@ -44,6 +44,13 @@ const LoginScreen = (props:IProps) => {
   const { setAuthenticated } = props;
   // const {errorText, setErrorText} = useState(null);
   const [employeeId, setEmployeeId] = useState<null|string>('');
+  useEffect(() => {
+    let employee = localStorage.getItem('employeeId');
+    if(employee){
+      setEmployeeId(employee);
+      setAuthenticated(true);
+    }
+  }, [])
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setEmployeeId(event.target.value);
@@ -52,6 +59,7 @@ const LoginScreen = (props:IProps) => {
   const onSubmit = () => {
     if (employeeId && employeeId.length > 0) {
       setAuthenticated(true);
+      localStorage.setItem('employeeId', employeeId);
     }
   };
   return (

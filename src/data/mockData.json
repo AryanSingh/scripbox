@@ -2,7 +2,7 @@
   "challenges": [
     {
       "title": "challenge1",
-      "id": 1,
+      "id": "1",
       "description": "challenge 1 descriptioin is long enough",
       "createdAt": 1632514702658,
       "tags": ["Javascript", "Python", "Java", "Angular"],
@@ -11,7 +11,7 @@
       "createdBy": "aryan"
     }, {
       "title": "challenge2",
-      "id": 2,
+      "id": "2",
       "description": "challenge 2 descriptioin is long enough",
       "createdAt": 1632514702659,
       "tags": ["Python", "Java", "Angular"],
@@ -20,7 +20,7 @@
       "createdBy": "aryan"
     },{
       "title": "challenge3",
-      "id": 3,
+      "id": "3",
       "description": "challenge 3 descriptioin is long enough",
       "createdAt": 1632514702660,
       "tags": ["Javascript", "Python"],
@@ -29,7 +29,7 @@
       "createdBy": "aryan"
     },{
       "title": "challenge4",
-      "id": 4,
+      "id": "4",
       "description": "challenge 4 descriptioin is long enough",
       "createdAt": 1632514702663,
       "tags": ["Javascript"],
@@ -38,7 +38,7 @@
       "createdBy": "aryan"
     },{
       "title": "challenge5",
-      "id": 5,
+      "id": "5",
       "description": "challenge 5 descriptioin is long enough",
       "createdAt": 1632514702664,
       "tags": ["Angular", "React"],

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import mockData from '../data/mockData.json';
 import { IChallenge } from '../types';
 
-const useChallengeService = () => {
+const useGetChallenges = () => {
   const [challengeData, setChallengeData] = useState<IChallenge[]>([]);
   useEffect(() => {
     setChallengeData(mockData.challenges);
@@ -10,4 +10,4 @@ const useChallengeService = () => {
   return challengeData;
 };
 
-export default useChallengeService;
+export default useGetChallenges;

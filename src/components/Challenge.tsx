@@ -36,8 +36,8 @@ const Challenge = (props:IProps) => {
   const { challenge } = props;
   const classes = useStyles();
   const renderTags = (tags: string[]) => tags.map((tag) => (
-    <Grid item className={classes.tag}>
-      <Typography data-testid={`${challenge.id}${tag}`} key={tag} variant="body1">{tag}</Typography>
+    <Grid key={tag} item className={classes.tag}>
+      <Typography data-testid={`${challenge.id}${tag}`} variant="body1">{tag}</Typography>
     </Grid>
   ));
   return (

@@ -1,14 +1,16 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
-import { Typography } from '@material-ui/core';
+import { Typography, Button } from '@material-ui/core';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Challenge from '../components/Challenge';
-import useChallengeService from './useChallengesService';
+import useGetChallenges from "../services/useGetChallenges";
+import { useHistory } from "react-router-dom";
+
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
   root: {
     flexGrow: 1,
-    height: '100vh',
+    padding: '20px 0 80px 0'
   },
   wrapper: {
     // margin: 'auto'
@@ -26,6 +28,17 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
     // flexDirection: 'row',
     // flexWrap: 'wrap'
   },
+  buttonContainer: {
+    position: 'fixed',
+    bottom: '20px',
+    left: '50%',
+    transform: 'translate(-50%, -50%)'
+  },
+  createButton: {
+    width: '30%',
+    minWidth: '250px',
+    maxWidth: '300px'
+  }
 }));
 
 interface IProps {
@@ -34,7 +47,9 @@ interface IProps {
 
 const HomeScreen = (props:IProps) => {
   const classes = useStyles();
-  const challenges = useChallengeService();
+  const challenges = useGetChallenges();
+  const history = useHistory();
+
 
   const renderChallenges = () => challenges.map((challenge) => <Challenge key={challenge.id} challenge={challenge} />);
   return (
@@ -45,6 +60,12 @@ const HomeScreen = (props:IProps) => {
       <Grid direction="row" className={classes.challengesContainer} container justifyContent="center">
         {renderChallenges()}
       </Grid>
+      <Grid className={classes.buttonContainer} direction='row' container justifyContent='center'>
+        <Button onClick={() => history.push('/create_challenge')} className={classes.createButton} variant="contained" color="primary">
+          Create Challenge
+        </Button>
+      </Grid>
+
     </Grid>
 
   );

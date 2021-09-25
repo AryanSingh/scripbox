@@ -1,6 +1,5 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import HomeScreen from '../HomeScreen';
 import mockData from '../../data/mockData.json';
 
@@ -25,5 +24,6 @@ test('all challenges are rendered correctly', () => {
     challenge.tags.forEach((tag) => {
       expect(screen.queryByTestId(`${challenge.id}${tag}`)).toBeInTheDocument();
     });
+    expect(screen.queryByText(/create challenge/i)).toBeInTheDocument();
   });
 });

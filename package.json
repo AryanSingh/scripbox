@@ -51,7 +51,8 @@
     "eslint-config-airbnb": "^18.2.1",
     "husky": ">=6",
     "lint-staged": ">=10",
-    "prettier": "^2.4.1"
+    "prettier": "^2.4.1",
+    "react-select-material-ui": "^7.1.0"
   },
   "lint-staged": {
     "*.{js,css,md}": "prettier --write"

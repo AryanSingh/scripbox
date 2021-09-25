@@ -8,6 +8,7 @@ import {
 import './App.css';
 import LoginScreen from './screens/LoginScreen';
 import HomeScreen from './screens/HomeScreen';
+import CreateChallengeScreen from "./screens/CreateChallengeScreen";
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
@@ -21,6 +22,9 @@ function App() {
               <Switch>
                 <Route path="/home">
                   <HomeScreen />
+                </Route>
+                <Route path="/create_challenge">
+                  <CreateChallengeScreen />
                 </Route>
                 <Route path="/">
                   <HomeScreen />
