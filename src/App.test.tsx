@@ -1,9 +1,9 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event'
+import userEvent from '@testing-library/user-event';
 import App from './App';
 
-test('login button is rendered and employeeId field is present',  () => {
+test('login button is rendered and employeeId field is present', () => {
   render(<App />);
   const linkElement = screen.getByText(/login/i);
   expect(linkElement).toBeInTheDocument();
@@ -11,7 +11,7 @@ test('login button is rendered and employeeId field is present',  () => {
 });
 
 test('logging in removes login screen', async () => {
-  render(<App/>);
+  render(<App />);
   userEvent.type(screen.getByRole('textbox'), 'aryan');
   expect(screen.getByDisplayValue('aryan')).toBeInTheDocument();
   expect(screen.queryByTestId('inactiveButton')).not.toBeInTheDocument();
