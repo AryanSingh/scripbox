@@ -5,7 +5,7 @@ import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import ThumbUpIcon from "@material-ui/icons/ThumbUp";
 import ThumbDownIcon from "@material-ui/icons/ThumbDown";
 import { IChallenge } from "../types";
-import { upVote, downVote } from "../services/voteService";
+import { upVote, downVote } from "../services/dataService";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({

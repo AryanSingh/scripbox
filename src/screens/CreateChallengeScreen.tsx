@@ -3,8 +3,10 @@ import { Grid, TextField, Typography, Button } from "@material-ui/core";
 
 import { MultipleSelect } from "react-select-material-ui";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
-import { createChallenge } from "../services/voteService";
+
 import { useHistory } from "react-router-dom";
+import { createChallenge } from "../services/dataService";
+
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     input: {

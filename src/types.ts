@@ -8,7 +8,3 @@ export interface IChallenge {
   downVotes: number;
   createdBy: string;
 }
-
-export interface IStore {
-  challenges: IChallenge[];
-}

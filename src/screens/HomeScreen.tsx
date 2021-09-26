@@ -6,8 +6,8 @@ import Challenge from "../components/Challenge";
 import { useHistory } from "react-router-dom";
 import ToggleButton from "@material-ui/lab/ToggleButton";
 import ToggleButtonGroup from "@material-ui/lab/ToggleButtonGroup";
-import { getChallenges } from "../services/challengeService";
 import { IChallenge } from "../types";
+import { getChallenges } from "../services/dataService";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
