@@ -4,9 +4,8 @@
 /node_modules
 /.pnp
 .pnp.js
-/.history
-/.husky
-/.idea
+.history
+.idea
 
 # testing
 /coverage
