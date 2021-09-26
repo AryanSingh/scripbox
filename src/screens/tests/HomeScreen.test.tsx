@@ -2,6 +2,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import HomeScreen from "../HomeScreen";
 import mockData from "../../data/mockData.json";
+
 import userEvent from "@testing-library/user-event";
 
 // should contain text all challenges
