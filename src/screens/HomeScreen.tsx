@@ -51,7 +51,9 @@ const useStyles = makeStyles((theme: Theme) =>
     button: {
       textTransform: "none",
     },
-    filterText: { marginRight: "10px" },
+    filterText: {
+      margin: "20px 10px 20px 0",
+    },
   })
 );
 
@@ -86,11 +88,11 @@ const HomeScreen = (props: IProps) => {
   };
 
   const filterChallenges = (challenges: IChallenge[]) => {
-    console.log("alignment", alignment);
+    let copyChallenges = [...challenges];
     if (alignment === "left") {
-      return challenges.sort((a, b) => a.createdAt - b.createdAt);
+      return copyChallenges.sort((a, b) => a.createdAt - b.createdAt);
     } else {
-      return challenges.sort((a, b) => b.upVotes - a.upVotes);
+      return copyChallenges.sort((a, b) => b.upVotes - a.upVotes);
     }
   };
 

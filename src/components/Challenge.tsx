@@ -45,10 +45,13 @@ const Challenge = (props: IProps) => {
 
   const renderTags = (tags: string[]) =>
     tags.map((tag) => (
-      <Grid key={tag} item className={classes.tag}>
-        <Typography data-testid={`${challenge.id}${tag}`} variant="body1">
-          {tag}
-        </Typography>
+      <Grid
+        data-testid={`${challenge.id}${tag}`}
+        key={tag}
+        item
+        className={classes.tag}
+      >
+        <Typography variant="body1">{tag}</Typography>
       </Grid>
     ));
   return (
@@ -67,7 +70,7 @@ const Challenge = (props: IProps) => {
       <Typography variant="h4">{challenge.title}</Typography>
       <Typography variant="body1">{challenge.description}</Typography>
       <Grid direction="row" container justifyContent="center">
-        <Typography variant="body1">Created at: </Typography>
+        <Typography variant="body1">{`Created at: ${" "}`}</Typography>
         <Typography variant="body1">
           {new Date(challenge.createdAt).toLocaleString()}
         </Typography>

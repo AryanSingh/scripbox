@@ -111,7 +111,7 @@ const CreateChallengeScreen = () => {
         </Grid>
         <Grid container direction="row" justifyContent="center" item>
           <Button
-            data-testid="activeButton"
+            data-testid={`button${checkValid() ? "Enabled" : "Disabled"}`}
             className={classes.button}
             disableElevation
             onClick={() => onSubmit()}
