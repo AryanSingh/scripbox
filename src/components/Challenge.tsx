@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Grid from "@material-ui/core/Grid";
 import { Typography } from "@material-ui/core";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
@@ -59,6 +59,7 @@ const Challenge = (props: IProps) => {
       container
       item
       key={challenge.id}
+      data-testid={`challenge${challenge.id}`}
       xs={12}
       md={5}
       lg={4}
