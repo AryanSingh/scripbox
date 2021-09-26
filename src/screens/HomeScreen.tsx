@@ -92,7 +92,9 @@ const HomeScreen = (props: IProps) => {
     if (alignment === "left") {
       return copyChallenges.sort((a, b) => a.createdAt - b.createdAt);
     } else {
-      return copyChallenges.sort((a, b) => b.upVotes - a.upVotes);
+      return copyChallenges.sort(
+        (a, b) => b.upVotes + b.downVotes - (a.upVotes + a.downVotes)
+      );
     }
   };
 
@@ -130,7 +132,7 @@ const HomeScreen = (props: IProps) => {
           </ToggleButton>
 
           <ToggleButton className={classes.button} value="right">
-            <Typography variant="body1">Upvotes</Typography>
+            <Typography variant="body1">Total Votes</Typography>
           </ToggleButton>
         </ToggleButtonGroup>
       </Grid>
