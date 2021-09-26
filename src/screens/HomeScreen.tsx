@@ -78,6 +78,7 @@ const HomeScreen = (props: IProps) => {
 
   const fetchChallenges = () => {
     let res = getChallenges();
+    console.log("fetchChallenges");
     setChallenges(res);
   };
 

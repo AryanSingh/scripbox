@@ -75,7 +75,6 @@ class DataService {
       createdAt,
       createdBy,
     };
-    console.log("this", this);
     this.challenges = [...this.challenges, challenge];
     localStorage.setItem("data", JSON.stringify(this.challenges));
   };

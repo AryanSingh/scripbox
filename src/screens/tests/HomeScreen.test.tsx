@@ -2,6 +2,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import HomeScreen from "../HomeScreen";
 import mockData from "../../data/mockData.json";
+import userEvent from "@testing-library/user-event";
 
 // should contain text all challenges
 // all challenges should be rendered
@@ -21,4 +22,14 @@ test("all challenges and create challenge button are rendered correctly", () => 
     ).toBeInTheDocument();
   });
   expect(screen.queryByText(/create challenge/i)).toBeInTheDocument();
+});
+
+test("upvotes and downvotes working properly", () => {
+  // @ts-ignore
+  const logSpy = jest.spyOn(console, "log");
+
+  render(<HomeScreen />);
+  userEvent.click(screen.queryByTestId(`thumbup${1}`)!);
+  expect(logSpy).toBeCalledWith("fetchChallenges");
+  // expect(screen.queryByTestId(`upvotes${1}`)!.innerHTML).toBe(102);
 });

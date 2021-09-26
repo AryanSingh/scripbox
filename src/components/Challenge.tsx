@@ -1,6 +1,6 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
-import { Typography } from "@material-ui/core";
+import { Typography, Box } from "@material-ui/core";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import ThumbUpIcon from "@material-ui/icons/ThumbUp";
 import ThumbDownIcon from "@material-ui/icons/ThumbDown";
@@ -78,25 +78,30 @@ const Challenge = (props: IProps) => {
       </Grid>
       <Grid direction="row" container justifyContent="center" spacing={1}>
         <Grid item container xs={6} direction="row" justifyContent="flex-end">
-          <ThumbUpIcon
-            className={classes.icon}
-            onClick={() => {
-              upVote(challenge.id);
-              props.fetchChallenges();
-            }}
-          />
+          <Box data-testid={`thumbup${challenge.id}`}>
+            <ThumbUpIcon
+              className={classes.icon}
+              onClick={() => {
+                upVote(challenge.id);
+                props.fetchChallenges();
+              }}
+            />
+          </Box>
           <Typography data-testid={`upvotes${challenge.id}`} variant="body1">
             {challenge.upVotes}
           </Typography>
         </Grid>
         <Grid item container xs={6} direction="row" justifyContent="flex-start">
-          <ThumbDownIcon
-            className={classes.icon}
-            onClick={() => {
-              downVote(challenge.id);
-              props.fetchChallenges();
-            }}
-          />
+          <Box>
+            <ThumbDownIcon
+              className={classes.icon}
+              onClick={() => {
+                downVote(challenge.id);
+                props.fetchChallenges();
+              }}
+            />
+          </Box>
+
           <Typography data-testid={`downvotes${challenge.id}`} variant="body1">
             {challenge.downVotes}
           </Typography>
