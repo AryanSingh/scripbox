@@ -93,6 +93,7 @@ const CreateChallengeScreen = () => {
           <TextField
             multiline={true}
             className={classes.input}
+            maxRows={4}
             value={description}
             placeholder="challenge description"
             variant="outlined"

@@ -18,6 +18,7 @@ const useStyles = makeStyles((theme: Theme) =>
       border: "1px solid",
       borderColor: theme.palette.primary.main,
       margin: "15px",
+      padding: "0 10px",
     },
     paper: {
       height: 140,
@@ -42,6 +43,10 @@ interface IProps {
 const Challenge = (props: IProps) => {
   const { challenge } = props;
   const classes = useStyles();
+
+  const restrictLength = (str: string, length: number) => {
+    return str.slice(0, length) + (str.length > length ? "..." : "");
+  };
 
   const renderTags = (tags: string[]) =>
     tags.map((tag) => (
@@ -68,8 +73,12 @@ const Challenge = (props: IProps) => {
       justifyContent="space-around"
       alignItems="center"
     >
-      <Typography variant="h4">{challenge.title}</Typography>
-      <Typography variant="body1">{challenge.description}</Typography>
+      <Typography variant="h4">
+        {restrictLength(challenge.title, 17)}
+      </Typography>
+      <Typography variant="body1">
+        {restrictLength(challenge.description, 300)}
+      </Typography>
       <Grid direction="row" container justifyContent="center">
         <Typography variant="body1">{`Created at: ${" "}`}</Typography>
         <Typography variant="body1">
