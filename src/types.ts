@@ -4,7 +4,7 @@ export interface IChallenge {
   description: string;
   createdAt: number;
   tags: string[];
-  upVotes: number;
-  downVotes: number;
+  upVotes: string[];
+  downVotes: string[];
   createdBy: string;
 }

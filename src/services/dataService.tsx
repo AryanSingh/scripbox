@@ -14,8 +14,31 @@ function extractData() {
 }
 
 class DataService {
-  private challenges: IChallenge[];
+  private challenges: (
+    | {
+        createdAt: number;
+        createdBy: string;
+        description: string;
+        upVotes: number | string[];
+        id: string;
+        title: string;
+        tags: string[];
+        downVotes: number;
+      }
+    | {
+        createdAt: number;
+        createdBy: string;
+        description: string;
+        upVotes: number;
+        id: string;
+        title: string;
+        tags: string[];
+        downVotes: string[];
+      }
+    | IChallenge
+  )[];
   constructor() {
+    // @ts-ignore
     this.challenges = extractData();
   }
 
@@ -33,10 +56,23 @@ class DataService {
     return [];
   };
 
-  downVote = (id: string) => {
+  downVote = (id: string, employeeId: string) => {
     let copyData = this.challenges.map((challenge) => {
-      if (challenge.id === id) {
-        return { ...challenge, downVotes: challenge.downVotes + 1 };
+      if (
+        challenge.id === id &&
+        //@ts-ignore
+        challenge.downVotes.indexOf(employeeId) === -1
+      ) {
+        //@ts-ignore
+        let upvoteIndex = challenge.upVotes.indexOf(employeeId);
+        if (upvoteIndex === -1) {
+          // do nothign
+        } else {
+          //@ts-ignore
+          challenge.upVotes.splice(upvoteIndex, 1);
+        }
+        //@ts-ignore
+        challenge.downVotes.push(employeeId);
       }
       return challenge;
     });
@@ -44,13 +80,32 @@ class DataService {
     localStorage.setItem("data", JSON.stringify(this.challenges));
   };
 
-  upVote = (id: string) => {
+  upVote = (id: string, employeeId: string) => {
+    // let args = arguments;
+    console.log("args", id, employeeId);
     let copyData = this.challenges.map((challenge) => {
-      if (challenge.id === id) {
-        return { ...challenge, upVotes: challenge.upVotes + 1 };
+      let challengeCopy = { ...challenge };
+      if (
+        challengeCopy.id === id &&
+        //@ts-ignore
+        challengeCopy.upVotes.indexOf(employeeId) === -1
+      ) {
+        //@ts-ignore
+        let downvoteIndex = challengeCopy.downVotes.indexOf(employeeId);
+        if (downvoteIndex === -1) {
+        } else {
+          //@ts-ignore
+          challengeCopy.downVotes.splice(downvoteIndex, 1);
+        }
+        //@ts-ignore
+        challengeCopy.upVotes.push(employeeId);
+
+        return challengeCopy;
       }
-      return challenge;
+
+      return challengeCopy;
     });
+    //@ts-ignore
     this.challenges = copyData;
     localStorage.setItem("data", JSON.stringify(this.challenges));
   };
@@ -58,8 +113,8 @@ class DataService {
     title: string;
     description: string;
     tags: string[];
-    upVotes: number;
-    downVotes: number;
+    upVotes: string[];
+    downVotes: string[];
   }) => {
     const { title, description, downVotes, upVotes, tags } = challengeOjb;
     let createdAt = Date.now();

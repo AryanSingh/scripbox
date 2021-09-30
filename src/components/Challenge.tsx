@@ -43,6 +43,7 @@ interface IProps {
 const Challenge = (props: IProps) => {
   const { challenge } = props;
   const classes = useStyles();
+  let employeeId = localStorage.getItem("employeeId")!;
 
   const restrictLength = (str: string, length: number) => {
     return str.slice(0, length) + (str.length > length ? "..." : "");
@@ -91,13 +92,13 @@ const Challenge = (props: IProps) => {
             <ThumbUpIcon
               className={classes.icon}
               onClick={() => {
-                upVote(challenge.id);
+                upVote(challenge.id, employeeId);
                 props.fetchChallenges();
               }}
             />
           </Box>
           <Typography data-testid={`upvotes${challenge.id}`} variant="body1">
-            {challenge.upVotes}
+            {challenge.upVotes.length}
           </Typography>
         </Grid>
         <Grid item container xs={6} direction="row" justifyContent="flex-start">
@@ -105,14 +106,14 @@ const Challenge = (props: IProps) => {
             <ThumbDownIcon
               className={classes.icon}
               onClick={() => {
-                downVote(challenge.id);
+                downVote(challenge.id, employeeId);
                 props.fetchChallenges();
               }}
             />
           </Box>
 
           <Typography data-testid={`downvotes${challenge.id}`} variant="body1">
-            {challenge.downVotes}
+            {challenge.downVotes.length}
           </Typography>
         </Grid>
       </Grid>

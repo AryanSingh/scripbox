@@ -59,8 +59,8 @@ const CreateChallengeScreen = () => {
       title: name,
       description: description,
       tags: tags,
-      upVotes: 0,
-      downVotes: 0,
+      upVotes: [],
+      downVotes: [],
     });
     history.push("/");
   };

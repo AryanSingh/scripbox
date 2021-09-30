@@ -79,6 +79,8 @@ const HomeScreen = (props: IProps) => {
   const fetchChallenges = () => {
     let res = getChallenges();
     console.log("fetchChallenges");
+
+    // @ts-ignore
     setChallenges(res);
   };
 
@@ -94,7 +96,10 @@ const HomeScreen = (props: IProps) => {
       return copyChallenges.sort((a, b) => a.createdAt - b.createdAt);
     } else {
       return copyChallenges.sort(
-        (a, b) => b.upVotes + b.downVotes - (a.upVotes + a.downVotes)
+        (a, b) =>
+          b.upVotes.length +
+          b.downVotes.length -
+          (a.upVotes.length + a.downVotes.length)
       );
     }
   };
